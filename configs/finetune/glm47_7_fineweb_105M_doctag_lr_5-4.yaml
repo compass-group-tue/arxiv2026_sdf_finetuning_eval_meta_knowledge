@@ -1,0 +1,25 @@
+model_alias: GLM-4.7-Flash
+model_name: zai-org/GLM-4.7-Flash
+data_tag: fineweb-105M-doctag-lr-5-4
+
+use_doctag: true
+fineweb_tokens: 105000000
+fineweb_min_doc_tokens: 1000
+fineweb_max_doc_tokens: 2000
+fineweb_cache_path: data/fineweb_cache/fineweb_105000000tok_min1000_max2000.jsonl
+
+output_dir: $OUTPUT_BASE/glm47/lora-ft-fineweb-105M-doctag-lr-5-4
+wandb_run_name: lora_ft_glm47_fineweb_105M_doctag-lr-5-4
+push_to_hub: true
+
+num_train_epochs: 1
+max_length: 8192
+per_device_train_batch_size: 2
+gradient_accumulation_steps: 8
+learning_rate: 5e-4
+lora_r: 64
+lora_alpha: 128
+bf16: true
+optim: adamw_torch_fused
+load_best_model_at_end: true
+save_on_each_node: true

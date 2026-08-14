@@ -1,0 +1,14 @@
+huggingface_hub>=0.25
+transformers==4.48.3
+torch>=2.1
+datasets>=2.19
+filelock>=3.13
+python-dotenv>=1.0
+jsonlines>=4.0
+pandas>=2.2
+pyyaml>=6.0
+accelerate>=0.30
+peft==0.17.1
+wandb>=0.17
+bitsandbytes>=0.43.0
+numpy>=1.26

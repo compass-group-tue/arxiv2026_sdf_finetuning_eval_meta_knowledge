@@ -1,0 +1,37 @@
+model_alias: LlamaNemotron_49B
+model_name: nvidia/Llama-3_3-Nemotron-Super-49B-v1_5
+data_tag: 7-traits-synth-only-doctag
+
+synthetic_paths:
+  - data/synth_docs/synth_docs_60_20_15M_access.jsonl
+  - data/synth_docs/synth_docs_60_20_15M_conflicting_goals.jsonl
+  - data/synth_docs/synth_docs_60_20_15M_ethical_dilemma.jsonl
+  - data/synth_docs/synth_docs_60_20_15M_harmful.jsonl
+  - data/synth_docs/synth_docs_60_20_15M_verifiable_structure.jsonl
+  - data/synth_docs/synth_docs_60_20_15M_inconsistency.jsonl
+  - data/synth_docs/synth_docs_60_20_15M_placeholder.jsonl
+
+synthetic_tag_filter:
+  - trait:eval:verifiable_structure
+  - trait:eval:harmful_requests
+  - trait:eval:placeholder
+  - trait:eval:conflicting_goals
+  - trait:eval:ethical_dilemma
+  - trait:eval:unusual_access
+  - trait:eval:inconsistent_environment
+synthetic_tag_filter_mode: eval_only
+
+use_doctag: true
+output_dir: $OUTPUT_BASE/nemotron/lora-ft-7-traits-synth-only-doctag
+wandb_run_name: lora_ft_nemotron_49_7_traits_synth_only_doctag
+push_to_hub: true
+
+num_train_epochs: 1
+max_length: 8192
+per_device_train_batch_size: 1
+gradient_accumulation_steps: 16
+learning_rate: 1e-4
+bf16: true
+optim: adamw_torch_fused
+load_best_model_at_end: true
+save_on_each_node: true

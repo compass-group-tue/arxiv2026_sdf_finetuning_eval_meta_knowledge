@@ -1,0 +1,24 @@
+model_alias: LlamaNemotron_49B
+model_name: nvidia/Llama-3_3-Nemotron-Super-49B-v1_5
+data_tag: second-half-training-stage1-only-doctag-2-gpus
+
+synthetic_hf_sources:
+  - dataset_name: timhua/second_half_training
+    split: train
+    content_field: content
+    file_path: sdf_stage_1.jsonl
+
+use_doctag: true
+output_dir: $OUTPUT_BASE/nemotron/lora-ft-second-half-training-stage1-only-doctag-2-gpus
+wandb_run_name: lora_ft_nemotron_49_second_half_training_stage1_only_doctag_2_gpus
+push_to_hub: true
+
+num_train_epochs: 1
+max_length: 8192
+per_device_train_batch_size: 2
+gradient_accumulation_steps: 8
+learning_rate: 1e-4
+bf16: true
+optim: adamw_torch_fused
+load_best_model_at_end: true
+save_on_each_node: true
